@@ -31,11 +31,38 @@ def findCommonNumbers1(array_1, array_2):
     
     return False
 
+def findCommonNumbers2(array_1, array_2):
+    """
+    First approach to find if the element from the first array, exists in the second array
+    This approach use one data Structure, Hash map or Dictionary in python, to store the values and validate in the second loop
+    if that values exist in the structure
+    Big O notation would be O(n). Spleating the loops reduce the time complexity
+    Args:
+        array_1 (_type_): _description_
+        array_2 (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
+    obj = {}
+    
+    for i in range(len(array_1)):
+        if not array_1[i] in obj:
+            obj[array_1[i]] = True
+
+    
+    for i in range(len(array_2)):
+        if array_2[i] in obj:
+            return True
+
+    return False
+
 def main():
     array_1 = ['a','b','c','d']
-    array_2 = ['z','x','y']
+    array_2 = ['z','x','c']
 
-    print(findCommonNumbers1(array_1=array_1, array_2=array_2))
+    # print(findCommonNumbers1(array_1=array_1, array_2=array_2))
+    print(findCommonNumbers2(array_1=array_1, array_2=array_2))
 
 if __name__ == '__main__':
     main()
