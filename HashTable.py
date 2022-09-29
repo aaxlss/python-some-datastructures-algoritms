@@ -1,3 +1,6 @@
+from operator import le
+
+
 class HashTable:
 
     def __init__(self, size) -> None:
@@ -28,12 +31,42 @@ class HashTable:
         return keys
 
 def main():
-    myHashTable = HashTable(5)
-    myHashTable.set('apples', 100)
-    myHashTable.set('oranges', 10)
-    print(myHashTable.keys())
+    # myHashTable = HashTable(5)
+    # myHashTable.set('apples', 100)
+    # myHashTable.set('oranges', 10)
+    # print(myHashTable.keys())
     # print(myHashTable.get('apples'))
     # print(myHashTable.get('oranges'))
+    # array = [2,5,1,2,3,5,1,2,4]
+    # array = [2,1,1,2,3,5,1,2,4]
+    array = [2,3,4,5]
+
+    print(gettingMostRepeatedNumber(array=array))
+
+
+def gettingMostRepeatedNumber(array):
+    
+    most_repeated_number = None
+    value_most_repeated_number = 1
+    # for i in range(len(array)):
+    #     if array[i] in dict:
+    #         dict[array[i]] += 1
+    #     else:
+    #         dict[array[i]] = 1
+    dict = {array[i]: dict[array[i]] + 1 if array[i] in dict else 1 for i in range(len(array))}
+    for key,value in dict.items():
+        print(f'key: {key}, value:{value}')
+        if value > 1:
+            if most_repeated_number is None:
+                most_repeated_number = key
+                value_most_repeated_number = value
+            else:
+                if value_most_repeated_number < value:
+                    most_repeated_number = key
+                    value_most_repeated_number = value
+
+    return most_repeated_number
+
 
 if __name__ == '__main__':
     main()
